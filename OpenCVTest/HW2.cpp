@@ -7,8 +7,9 @@ RNG rng(12345);
 
 int main(int argc, char** argv) {
 	Mat board_rgb, board_g, board_bin, se_rgb, se_bin;
-	board_rgb = imread("C:/Users/jordan/Documents/CV_Homework2/images/p1_board.JPG", 1);
-	se_rgb = imread("C:/Users/jordan/Documents/CV_Homework2/images/frame.png", 1);
+	board_rgb = imread("../../images/p1_board.JPG", 1);
+	//board_rgb = imread($(ProjectDir) + "  ", 1);
+	se_rgb = imread("../../images/frame.png", 1);
 
 	cvtColor(board_rgb, board_g, cv::COLOR_BGR2GRAY);
 	threshold(board_g, board_bin, 0.85 * 255, 255, THRESH_BINARY);
@@ -23,7 +24,7 @@ int main(int argc, char** argv) {
 	bitwise_not(se_bin, se_inv);
 	bitwise_not(board_bin, board_inv);
 
-	dilate(board_inv, board_dilated, se_inv);
+	dilate(board_bin, board_dilated, se_inv);
 
 	//namedWindow("Display Image", WINDOW_AUTOSIZE);
 	/*
@@ -51,6 +52,7 @@ int main(int argc, char** argv) {
 	{
 		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
 		drawContours(contours, spaces, i, color, 2, 8, hierarchy, 0, Point());
+		printf("size: %f\n", spaces[i].size());
 	}
 
 	/// Show in a window
