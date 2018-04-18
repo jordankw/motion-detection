@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HW2.cpp">
+    <ClCompile Include="ThreatDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
